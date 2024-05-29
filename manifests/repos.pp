@@ -71,7 +71,7 @@ class docker::repos (
       if ($docker::manage_package) {
         $baseurl      = $location
         $gpgkey       = $key_source
-        $gpgkey_check = $key_check_source
+        $gpgkey_check = if $key_check_source { '1' } else { '0' }
 
         if ($docker::use_upstream_package_source) {
           yumrepo { 'docker':
